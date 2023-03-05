@@ -18,6 +18,7 @@ app.get("/get/:id", (req, res) => {
   const id = req.params.id;
   const query = req.query;
   var bearer = req.headers.authorization;
+  const headers = req.headers;
 
   if (!bearer) {
     bearer = "Bearer Token is absent";
@@ -28,13 +29,15 @@ app.get("/get/:id", (req, res) => {
     message: "Get Request Received Successfully",
     path_parameter: id + " is the path parameter",
     query_parameters: query,
-    bearer_token: bearer
+    bearer_token: bearer,
+    headers
   });
 });
 
 app.get("/get", (req, res) => {
   const query = req.query;
   var bearer = req.headers.authorization;
+  const headers = req.headers;
 
   if (!bearer) {
     bearer = "Bearer Token is absent";
@@ -44,7 +47,8 @@ app.get("/get", (req, res) => {
     error: false,
     message: "Get Request Received Successfully",
     query_parameters: query,
-    bearer_token: bearer
+    bearer_token: bearer,
+    headers
   });
 });
 
@@ -54,7 +58,7 @@ app.post("/post/:id", (req, res) => {
   const query = req.query;
   const body = req.body;
   var bearer = req.headers.authorization;
-
+  var headers = req.headers;
 
   if (!bearer) {
     bearer = "Bearer Token is absent";
@@ -65,7 +69,8 @@ app.post("/post/:id", (req, res) => {
     body,
     path_parameter: id + " is the path parameter",
     query_parameters: query,
-    bearer_token: bearer
+    bearer_token: bearer,
+    headers
   });
 });
 
@@ -73,6 +78,8 @@ app.post("/post", (req, res) => {
   const body = req.body;
   const query = req.query;
   var bearer = req.headers.authorization;
+  const headers = req.headers;
+
 
 
   if (!bearer) {
@@ -83,7 +90,8 @@ app.post("/post", (req, res) => {
     message: "Post Request Received Successfully",
     body,
     query_parameters: query,
-    bearer_token: bearer
+    bearer_token: bearer,
+    headers
   });
 });
 
@@ -93,6 +101,7 @@ app.put("/put/:id", (req, res) => {
   const query = req.query;
   const body = req.body;
   var bearer = req.headers.authorization;
+  const headers = req.headers;
 
 
   if (!bearer) {
@@ -104,7 +113,8 @@ app.put("/put/:id", (req, res) => {
     body,
     path_parameter: id + " is the path parameter",
     query_parameters: query,
-    bearer_token: bearer
+    bearer_token: bearer,
+    headers
   });
 });
 
@@ -113,6 +123,7 @@ app.put("/put", (req, res) => {
   const body = req.body;
   const query = req.query;
   var bearer = req.headers.authorization;
+  const headers = req.headers;
 
   if (!bearer) {
     bearer = "Bearer Token is absent";
@@ -123,7 +134,8 @@ app.put("/put", (req, res) => {
     message: "Put Request Received Successfully",
     body,
     query_parameters: query,
-    bearer_token: bearer
+    bearer_token: bearer,
+    headers
   });
 });
 
@@ -132,6 +144,7 @@ app.delete("/delete/:id", (req, res) => {
   const id = req.params.id;
   const query = req.query;
   var bearer = req.headers.authorization;
+  const headers = req.headers;
 
   if (!bearer) {
     bearer = "Bearer Token is absent";
@@ -141,7 +154,8 @@ app.delete("/delete/:id", (req, res) => {
     message: "Delete Request Received Successfully",
     path_parameter: id + " is the path parameter",
     query_parameters: query,
-    bearer_token: bearer
+    bearer_token: bearer,
+    headers
   });
 });
 
@@ -149,6 +163,7 @@ app.delete("/delete", (req, res) => {
 
   const query = req.query;
   var bearer = req.headers.authorization;
+  const headers = req.headers;
 
   if (!bearer) {
     bearer = "Bearer Token is absent";
@@ -157,14 +172,19 @@ app.delete("/delete", (req, res) => {
     error: false,
     message: "Delete Request Received Successfully",
     query_parameters: query,
-    bearer_token: bearer
+    bearer_token: bearer,
+    headers
   });
 });
 
 app.all("*", (req, res) => {
+
+  const headers = req.headers;
+
   res.status(404).json({
     error: true,
     message: "No such route exits",
+    headers
   });
 });
 
