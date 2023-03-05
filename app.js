@@ -4,7 +4,14 @@ const app = express();
 
 app.use(express.json());
 
-
+app.get("/", (req, res) => {
+  res.status(200).json({
+    error: false,
+    message: "Welcome to High on Bugs Blog API",
+    Blog: "https://highonbugs.sbk2k1.me/rest-part-2",
+    GitHub: "https://github.com/sbk2k1"
+  });
+});
 
 app.get("/get/:id", (req, res) => {
 
@@ -161,6 +168,4 @@ app.all("*", (req, res) => {
   });
 });
 
-app.listen(4908, () => {
-  console.log("Server is running on port 4908");
-});
+module.exports = app;
