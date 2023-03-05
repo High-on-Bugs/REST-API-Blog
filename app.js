@@ -179,12 +179,9 @@ app.delete("/delete", (req, res) => {
 
 app.all("*", (req, res) => {
 
-  const headers = req.headers;
-
   res.status(404).json({
     error: true,
     message: "No such route exits",
-    headers
   });
 });
 
